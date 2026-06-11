@@ -28,4 +28,13 @@ export class BingoGenerator implements AfterViewInit{
       await this.bingoDrawService.generateCard(this.canvasRef);
 
   }
+
+  downloadImage() {
+  if (!this.generatedImage) return;
+
+  const link = document.createElement('a');
+  link.href = this.generatedImage;
+  link.download = 'nintendo-direct-bingo.png';
+  link.click();
+}
 }
