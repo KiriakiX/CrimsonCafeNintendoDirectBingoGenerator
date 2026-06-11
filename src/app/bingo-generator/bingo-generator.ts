@@ -9,7 +9,7 @@ import { BingoDrawService } from '../bingo-draw-service';
   styleUrl: './bingo-generator.css',
 })
 export class BingoGenerator implements AfterViewInit{
- @ViewChild('bingoCanvas')
+ @ViewChild('bingoCanvas', { static: false })
   canvasRef!: ElementRef<HTMLCanvasElement>;
 
   generatedImage?: string;
@@ -22,6 +22,7 @@ export class BingoGenerator implements AfterViewInit{
 
   
   async generateCard() {
+    if (!this.canvasRef) return;
 
     this.generatedImage =
       await this.bingoDrawService.generateCard(this.canvasRef);

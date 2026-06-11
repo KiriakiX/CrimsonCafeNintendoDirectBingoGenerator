@@ -1,6 +1,6 @@
-    <button (click)="generateCard()">
-      Generate Bingo Card
-    </button>
+  <button (click)="generateCard()" [disabled]="!canvasRef">
+    Generate Bingo Card
+  </button>
 
     <canvas
       #bingoCanvas
