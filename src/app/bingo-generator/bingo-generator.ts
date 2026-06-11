@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { BingoDrawService } from '../bingo-draw-service';
 
 @Component({
@@ -8,7 +8,7 @@ import { BingoDrawService } from '../bingo-draw-service';
   templateUrl: './bingo-generator.html',
   styleUrl: './bingo-generator.css',
 })
-export class BingoGenerator {
+export class BingoGenerator implements AfterViewInit{
  @ViewChild('bingoCanvas')
   canvasRef!: ElementRef<HTMLCanvasElement>;
 
@@ -16,6 +16,9 @@ export class BingoGenerator {
   constructor(
     private readonly bingoDrawService: BingoDrawService
   ) {}
+  ngAfterViewInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
   
   async generateCard() {
