@@ -1,0 +1,23 @@
+    <button (click)="generateCard()">
+      Generate Bingo Card
+    </button>
+
+    <canvas
+      #bingoCanvas
+      width="1190"
+      height="1342"
+      style="display:none">
+    </canvas>
+
+    <div *ngIf="generatedImage">
+      <img
+        [src]="generatedImage"
+        style="max-width: 100%; border: 1px solid black;">
+    </div>
+
+    <a
+      *ngIf="generatedImage"
+      [href]="generatedImage"
+      download="nintendo-direct-bingo.png">
+      Download Card
+    </a>
