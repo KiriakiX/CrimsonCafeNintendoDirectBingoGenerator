@@ -1,4 +1,5 @@
 import { Component, signal } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
@@ -8,5 +9,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('cc-nintendodirect-bingo-generator');
+   constructor(private title: Title) {
+    this.title.setTitle('Crimson Cafe Nintendo Direct Bingo Generator');
+  }
 }
