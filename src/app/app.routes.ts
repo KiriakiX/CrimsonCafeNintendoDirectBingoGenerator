@@ -2,5 +2,5 @@ import { Routes } from '@angular/router';
 import { BingoGenerator } from './bingo-generator/bingo-generator';
 
 export const routes: Routes = [
-    {path:'bingo', component:BingoGenerator }
+    {path:'', component:BingoGenerator }
 ];
