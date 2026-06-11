@@ -33,7 +33,8 @@ export class BingoDrawService {
        throw new Error();
     }
 
-    const template = await this.loadImage('/BingoCard.jpg');
+    const url = new URL('BingoCard.jpg', document.baseURI).toString();
+    const template = await this.loadImage(url);
     
     ctx.clearRect(
       0,
@@ -67,7 +68,7 @@ entries.forEach((entry, index) => {
           this.CELL_SIZE - this.CELL_PADDING * 2
         );
 
-        
+
       ctx.font =
         `bold ${fittedText.fontSize}px Arial`;
 
@@ -260,11 +261,10 @@ entries.forEach((entry, index) => {
 
 
   getEntries() {
+    const url = new URL('BingoEntries.json', document.baseURI).toString();
 
     return firstValueFrom(
-      this.http.get<BingoData>(
-        '/BingoEntries.json'
-      )
+      this.http.get<BingoData>(url)
     );
   }
 }
