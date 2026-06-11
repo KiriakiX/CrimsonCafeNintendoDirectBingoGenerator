@@ -1,0 +1,61 @@
+<div class="dialog">
+
+  <h2 class="dialog-title">Edit Bingo Pool</h2>
+
+  @if (loading) {
+    <p class="loading">Loading...</p>
+  } @else {
+
+    <div class="entry-list">
+
+      @for (entry of entries; track $index) {
+
+        <div class="entry-row">
+
+          <input
+            [(ngModel)]="entries[$index]"
+            placeholder="Bingo entry"
+            class="entry-input">
+
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="remove($index)">
+            Delete
+          </button>
+
+        </div>
+
+      }
+
+    </div>
+
+    <div class="actions">
+
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="addEntry()">
+        Add Entry
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="cancel()">
+        Cancel
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="save()"
+        [disabled]="entries.length < 25">
+        Save
+      </button>
+
+    </div>
+
+  }
+
+</div>

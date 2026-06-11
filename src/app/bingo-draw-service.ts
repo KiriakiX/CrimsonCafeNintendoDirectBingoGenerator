@@ -2,6 +2,7 @@ import { ElementRef, Injectable, Service } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { BingoData } from './bingo-data';
 import { HttpClient } from '@angular/common/http';
+import { BingoPoolService } from './bingo-pool-service';
 
 interface CellPosition {
   x: number;
@@ -17,7 +18,8 @@ export class BingoDrawService {
 
   private readonly cellCenters = this.generateCellCenters();
     constructor(
-    private readonly http: HttpClient
+    private readonly http: HttpClient,
+    private readonly bingoPoolService: BingoPoolService
     ) {}
 
     async generateCard(canvasRef: ElementRef<HTMLCanvasElement>): Promise<string> {
@@ -51,7 +53,7 @@ export class BingoDrawService {
       canvas.height
     );
 
-    const entries = this.getRandomEntries(bingoData.entries);
+    const entries = this.getRandomEntries(bingoData);
 
     ctx.fillStyle = 'black';
     ctx.textAlign = 'center';
@@ -261,10 +263,6 @@ entries.forEach((entry, index) => {
 
 
   getEntries() {
-    const url = new URL('BingoEntries.json', document.baseURI).toString();
-
-    return firstValueFrom(
-      this.http.get<BingoData>(url)
-    );
+    return this.bingoPoolService.getEntries();
   }
 }

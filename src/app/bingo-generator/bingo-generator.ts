@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { BingoDrawService } from '../bingo-draw-service';
+import { MatDialog } from '@angular/material/dialog';
+import { BingoPoolDialogComponent } from '../bingo-pool-dialog-component/bingo-pool-dialog-component';
 
 @Component({
   selector: 'app-bingo-generator',
@@ -14,7 +16,8 @@ export class BingoGenerator implements AfterViewInit{
 
   generatedImage?: string;
   constructor(
-    private readonly bingoDrawService: BingoDrawService
+    private readonly bingoDrawService: BingoDrawService,
+    private readonly dialog: MatDialog
   ) {}
   ngAfterViewInit(): void {
     console.log('Canvas initialized');
@@ -36,5 +39,31 @@ export class BingoGenerator implements AfterViewInit{
   link.href = this.generatedImage;
   link.download = 'nintendo-direct-bingo.png';
   link.click();
+}
+
+openPoolEditor(): void {
+
+  const dialogRef =
+    this.dialog.open(
+      BingoPoolDialogComponent,
+      {
+        width: '900px'
+      }
+    );
+
+  dialogRef.afterClosed()
+    .subscribe(result => {
+
+      if (result) {
+
+        console.log(
+          'Pool updated',
+          result
+        );
+
+      }
+
+    });
+
 }
 }
