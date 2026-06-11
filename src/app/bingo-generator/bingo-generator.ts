@@ -17,7 +17,7 @@ export class BingoGenerator implements AfterViewInit{
     private readonly bingoDrawService: BingoDrawService
   ) {}
   ngAfterViewInit(): void {
-    throw new Error('Method not implemented.');
+    console.log('Canvas initialized');
   }
 
   
