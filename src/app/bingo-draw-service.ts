@@ -67,6 +67,7 @@ entries.forEach((entry, index) => {
           this.CELL_SIZE - this.CELL_PADDING * 2
         );
 
+        
       ctx.font =
         `bold ${fittedText.fontSize}px Arial`;
 
